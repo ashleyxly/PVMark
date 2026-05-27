@@ -1,0 +1,94 @@
+[package]
+name = "hash-function"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[lib]
+# name = "hash_function"
+name = "hash_rustlib"
+path = "src/lib.rs"
+crate-type = ["lib", "cdylib"]
+
+[profile.release]
+opt-level = 3
+
+
+
+[dependencies]
+indicatif = "0.17.0"
+halo2_gadgets = { git = "https://github.com/zkonduit/halo2", branch= "ac/parallel-lookup-permute", default_features = false }
+halo2_proofs = { git = "https://github.com/zkonduit/halo2", branch= "ac/parallel-lookup-permute", default_features = false }
+halo2curves = { version = "0.1.0" }
+rand = { version = "0.8", default_features = false }
+clap = { version = "4.3.3", features = ["derive"]}
+rayon = { version = "1.7.0",  default_features = false }
+
+num-bigint = "0.4.4"
+plotters = { version = "0.3.0", optional = true }
+tabbycat = { version = "0.1", features = ["attributes"], optional = true }
+pyo3 = { version = "0.18.3" }
+pyo3-log = { version = "0.8.1", optional = true }
+# clap = { version = "4.3.2", features = ["derive"] }
+ff = "0.13.0"
+rand_core = { version = "0.6", default-features = false }
+rug = "1.24.1"
+num-traits = "0.2.18"
+sha256 = "=1.5.0"
+
+### poseidon
+poseidon-rs = "0.0.10"
+ark-ff = { version = "^0.4.0", default-features = true }
+ark-bn254 = { version = "^0.4.0", features = ["curve"] }
+ark-std = { version = "^0.4.0" }
+ark-crypto-primitives = { version = "^0.3.0", default-features = true, features = [ "r1cs" ] }
+ark-ed-on-bn254 = { version = "^0.3.0", default-features = true, features = [ "r1cs" ] }
+hex = { version = "0.4", default-features = false }
+
+### MiMC
+# arkworks-mimc = { version = "=0.3.0", features = ["mimc-7-91-bn254"] }
+arkworks-mimc = { path = "../arkworks-mimc"}
+
+rust-crypto = "^0.2"
+
+zkhash = { path = "../poseidon2/plain_implementations" }
+mimc-rs = { path = "../mimc-rs" }
+ff_2 = {package="ff_ce" , version="0.11", features = ["derive"]}
+# ark-bn254-2 = { path = "/home/username/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ark-bn254-0.3.0", package = "ark-bn254" }
+# ark-ff-2 ={ path = "/home/username/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ark-ff-0.3.0", package = "ark-ff" }
+ark-bn254-2 = { version="0.3.0", package = "ark-bn254" }
+ark-ff-2 = { version="0.3.0", package = "ark-ff" }
+
+[[bin]]
+name = "test_poseidon"
+path = "./src/bin/test_poseidon.rs"
+
+[[bin]]
+name = "test_pedersen"
+path = "./src/bin/test_pedersen.rs"
+
+[[bin]]
+name = "test_mimc"
+path = "./src/bin/test_mimc.rs"
+
+[[bin]]
+name = "test_keccak"
+path = "./src/bin/test_keccak.rs"
+
+[[bin]]
+name = "test_sha256"
+path = "./src/bin/test_sha256.rs"
+
+[[bin]]
+name = "test_mimc_arkworks"
+path = "./src/bin/test_mimc_arkworks.rs"
+
+
+[bin.target.'cfg(target_bin = "test_mimc_arkworks")'.dependencies]
+ark-ff = { version = "=0.3.0", default-features = false }
+ark-r1cs-std = { version = "=0.3.0", default-features = false }
+ark-std = { version = "=0.3.0", default-features = false }
+ark-relations = { version = "=0.3.0", default-features = false }
+ark-crypto-primitives = { version = "=0.3.0", default-features = false }
+ark-bn254 = { version = "=0.3.0", default-features = false, features = ["curve"] }
+

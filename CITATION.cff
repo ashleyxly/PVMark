@@ -1,0 +1,56 @@
+cff-version: 1.2.0
+title: "PVMark: Enabling Public Verifiability for LLM Watermarking Schemes"
+message: "If you use this software, please cite it using the metadata from this file."
+type: software
+authors:
+  - family-names: Duan
+    given-names: Haohua
+    affiliation: "East China University of Science and Technology; Shanghai Jiao Tong University"
+    orcid: "https://orcid.org/0000-0000-0000-0000"  # Replace with actual ORCID
+  - family-names: Xiang
+    given-names: Liyao
+    affiliation: "Shanghai Jiao Tong University; Shanghai Innovation Institute"
+    orcid: "https://orcid.org/0000-0000-0000-0000"  # Replace with actual ORCID
+    corresponding: true
+  - family-names: Zhang
+    given-names: Xin
+    affiliation: "Ant Group"
+  - family-names: Li
+    given-names: Baochun
+    affiliation: "University of Toronto"
+  - family-names: Li
+    given-names: Bo
+    affiliation: "Hong Kong University of Science and Technology"
+repository-code: "https://github.com/ashleyxly/PVMark"
+url: "https://github.com/ashleyxly/PVMark"
+abstract: "PVMark is a plugin based on zero-knowledge proof (ZKP) that enables the watermark detection process to be publicly verifiable by third parties without disclosing any secret key. It is developed for three representative watermarking schemes (KGW, SynthID-Text, Segment-Watermark) and implements multiple variants covering combinations of three hash functions (MiMC, Poseidon, Poseidon2) and four ZKP protocols (Groth16, PlonK, halo2, Nova)."
+keywords:
+  - LLM watermarking
+  - zero-knowledge proof
+  - public verifiability
+  - KGW
+  - SynthID
+  - MiMC
+  - Poseidon
+  - Nova
+license: MIT
+version: "1.0.0"
+date-released: "2026-05-27"
+preferred-citation:
+  type: conference-paper
+  title: "PVMark: Enabling Public Verifiability for LLM Watermarking Schemes"
+  authors:
+    - family-names: Duan
+      given-names: Haohua
+    - family-names: Xiang
+      given-names: Liyao
+    - family-names: Zhang
+      given-names: Xin
+    - family-names: Li
+      given-names: Baochun
+    - family-names: Li
+      given-names: Bo
+  collection-title: "Proceedings of the 35th USENIX Security Symposium"
+  year: 2026
+  publisher:
+    name: "USENIX Association"

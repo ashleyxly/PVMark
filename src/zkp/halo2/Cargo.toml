@@ -1,0 +1,166 @@
+[package]
+name = "halo2_merkle_tree"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+name = "halo2_merkle_tree"
+path = "src/lib.rs"
+
+[features]
+dev-graph = ["halo2_proofs/dev-graph", "plotters"]
+# icicle = ["halo2_proofs/icicle_gpu"]
+
+[dependencies]
+# halo2_proofs = { git = "https://github.com/zcash/halo2.git", rev = "a898d65ae3ad3d41987666f6a03cfc15edae01c4"}
+#halo2_proofs = { git = "https://github.com/appliedzkp/halo2.git", tag = "v2022_03_06" }
+# halo2_gadgets = {git = "https://github.com/zcash/halo2.git", rev = "a898d65ae3ad3d41987666f6a03cfc15edae01c4"}
+# halo2curves = { git = 'https://github.com/privacy-scaling-explorations/halo2curves', tag = "0.3.2" }
+plotters = { version = "0.3.0", optional = true }
+tabbycat = { version = "0.1", features = ["attributes"], optional = true }
+pyo3 = { version = "0.18.3" }
+pyo3-log = { version = "0.8.1", optional = true }
+# clap = { version = "4.3.2", features = ["derive"] }
+ff = "0.13.0"
+rand_core = { version = "0.6", default-features = false }
+# rand = "0.8.5"
+#pairing = { git = "https://github.com/appliedzkp/pairing.git", package = "pairing_bn256"}
+#bitvec = "0.22.3"
+
+#######################################################################################
+halo2_gadgets = { git = "https://github.com/zkonduit/halo2", branch= "ac/parallel-lookup-permute", default_features = false }
+halo2_proofs = { git = "https://github.com/zkonduit/halo2", branch= "ac/parallel-lookup-permute", default_features = false }
+halo2curves = { version = "0.1.0" }
+# halo2_gadgets = { git = "https://github.com/zkonduit/halo2.git", rev = "fe7522c85c8c434d7ceb9f663b0fb51909b9994f"}
+# halo2_proofs = { git = "https://github.com/zkonduit/halo2.git", rev = "4d7e6ddac661283e2b73c551b2e8f0011cedd50f"}
+# halo2curves = { git = "https://github.com/privacy-scaling-explorations/halo2curves", rev="9fff22c", features=["derive_serde"] }
+rand = { version = "0.8", default_features = false }
+clap = { version = "4.3.3", features = ["derive"]}
+rayon = { version = "1.7.0",  default_features = false }
+
+num-bigint = "0.4.4"
+num-traits = "0.2.18"
+# serde = { version = "1.0.126", features = ["derive"], optional = true }
+# serde_json = { version = "1.0.97", default_features = false, features = ["float_roundtrip", "raw_value"], optional = true }
+#######################################################################################
+# eth-types = { git = "https://github.com/privacy-scaling-explorations/zkevm-circuits", rev= "37b8aca"}
+# gadgets = { git = "https://github.com/privacy-scaling-explorations/zkevm-circuits", rev= "37b8aca"}
+# syn = "1.0.98"
+# detect_proofs = { git = "https://github.com/privacy-scaling-explorations/halo2/halo2_proofs", tag = "v2023_02_02"}
+# detect_gadgets = { git = "https://github.com/privacy-scaling-explorations/halo2/halo2_gadgets", tag = "v2023_02_02"}
+# halo2_proofs = { git = "https://github.com/privacy-scaling-explorations/halo2", tag = "v2023_02_02"}
+# halo2_gadgets = { git = "https://github.com/privacy-scaling-explorations/halo2", tag = "v2023_02_02"}
+
+
+#[patch.crates-io]
+# temporary solution to funty@1.2.0 being yanked, we should propose bitvec upgrade to upstream filecoin crates
+# tracking issue: https://github.com/bitvecto-rs/funty/issues/7
+# bitvec v0.22.0 depends on funty = "~1.2 which has been yanked #1283 
+#funty = { git = "https://github.com/bitvecto-rs/funty/", rev = "7ef0d890fbcd8b3def1635ac1a877fc298488446" }
+
+[dependencies.subtle]
+version = "^2.5"
+
+# icicle patch to 0.1.0 if feature icicle is enabled
+[patch.'https://github.com/ingonyama-zk/icicle']
+icicle = { git = "https://github.com/ingonyama-zk/icicle?rev=45b00fb", package = "icicle", branch = "fix/vhnat/ezkl-build-fix"}
+
+
+# [[bin]]
+# name = "test_main"
+# test = false
+# bench = false
+
+
+[[bin]]
+name = "test_image_crop"
+path = "./src/bin/test_image_crop.rs"
+
+[[bin]]
+name = "detect_NLP_watermark"
+path = "./src/bin/detect_NLP_watermark.rs"
+
+[[bin]]
+name = "test_detect_watermark"
+path = "./src/bin/test_detect_watermark.rs"
+
+[[bin]]
+name = "fibo_test"
+path = "./src/bin/fibo_test.rs"
+
+[[bin]]
+name = "test_add_chip"
+path = "./src/bin/test_add_chip.rs"
+
+[[bin]]
+name = "test_range_check_chip"
+path = "./src/bin/test_range_check_chip.rs"
+
+[[bin]]
+name = "test_less_than_chip"
+path = "./src/bin/test_less_than_chip.rs"
+
+[[bin]]
+name = "verify_detect_text_watermark"
+path = "./src/bin/verify_detect_text_watermark.rs"
+
+[[bin]]
+name = "verify_detect_text_watermark_v2"
+path = "./src/bin/verify_detect_text_watermark_v2.rs"
+
+[[bin]]
+name = "test_less_than_lookup_chip"
+path = "./src/bin/test_less_than_lookup_chip.rs"
+
+[[bin]]
+name = "test_summation_chip"
+path = "./src/bin/test_summation_chip.rs"
+
+[[bin]]
+name = "test_poseidon_width3"
+path = "./src/bin/test_poseidon_width3.rs"
+
+[[bin]]
+name = "test_poseidon_width3_2"
+path = "./src/bin/test_poseidon_width3_2.rs"
+
+[[bin]]
+name = "test_poseidon_function"
+path = "./src/bin/test_poseidon_function.rs"
+
+
+[[bin]]
+name = "test_check_dec_chip"
+path = "./src/bin/test_check_dec_chip.rs"
+
+[[bin]]
+name = "test_generate_trigger_sample"
+path = "./src/bin/test_generate_trigger_sample.rs"
+
+[[bin]]
+name = "test_read_onnx_parameters"
+path = "./src/bin/test_read_onnx_parameters.rs"
+
+
+[[bin]]
+name = "test_sha256_chip"
+path = "./src/bin/test_sha256_chip.rs"
+
+
+[[bin]]
+name = "verify_detect_text_watermark_v2_1"
+path = "./src/bin/verify_detect_text_watermark_v2_1.rs"
+
+[[bin]]
+name = "verify_detect_text_watermark_v3"
+path = "./src/bin/verify_detect_text_watermark_v3.rs"
+
+
+
+
+# [target.'cfg(target_bin_name = "detect_NLP_watermark")'.dependencies]
+# halo2_proofs = { git = "https://github.com/privacy-scaling-explorations/halo2", tag = "v2023_02_02"}
+# halo2_gadgets = { git = "https://github.com/privacy-scaling-explorations/halo2", tag = "v2023_02_02"}
+

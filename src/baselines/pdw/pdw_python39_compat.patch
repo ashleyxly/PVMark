@@ -1,0 +1,48 @@
+diff --git a/crypto.py b/crypto.py
+index 23dd711..aafdb83 100644
+--- a/crypto.py
++++ b/crypto.py
+@@ -1,3 +1,5 @@
++from __future__ import annotations
++
+ import hashlib
+ from struct import unpack
+ from typing import Any
+@@ -100,7 +102,7 @@ def sign_and_encode_openssl(
+     return BitArray(
+         bytes=bytes(
+             a ^ b
+-            for a, b in zip(BitArray(bin=signature_codeword).bytes, h, strict=False)
++            for a, b in zip(BitArray(bin=signature_codeword).bytes, h)
+         )
+     ).bin
+ 
+@@ -117,7 +119,7 @@ def decode_and_verify_openssl(
+     h: bytes = hashlib.sha512(message).digest()
+     unmasked_codeword = BitArray(
+         bytes=bytes(
+-            a ^ b for a, b in zip(BitArray(bin=binary_codeword).bytes, h, strict=False)
++            a ^ b for a, b in zip(BitArray(bin=binary_codeword).bytes, h)
+         )
+     ).bin
+     signature = binary_codeword_to_bytes(unmasked_codeword, max_planted_errors)
+diff --git a/detect.py b/detect.py
+index c2956d2..da7d128 100644
+--- a/detect.py
++++ b/detect.py
+@@ -1,3 +1,5 @@
++from __future__ import annotations
++
+ import argparse
+ import hashlib
+ import logging
+diff --git a/generate.py b/generate.py
+index 1aa47e3..081255e 100644
+--- a/generate.py
++++ b/generate.py
+@@ -1,3 +1,5 @@
++from __future__ import annotations
++
+ import argparse
+ import hashlib
+ import logging

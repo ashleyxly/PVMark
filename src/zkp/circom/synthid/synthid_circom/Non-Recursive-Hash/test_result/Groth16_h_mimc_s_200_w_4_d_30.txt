@@ -1,0 +1,9 @@
+Compile time for detect_directly: 87.535
+non_linear_constraints: 6268000
+wires: 6294032
+max_value: 6294032
+log2_ceil: 23
+Setup time for detect_directly: 866.256
+Prove time for detect_directly: 110.822
+Verify time for detect_directly: .734
+Total time: 1071.182
